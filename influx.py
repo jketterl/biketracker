@@ -14,11 +14,16 @@ while True:
         print("computer inserted - downloading data...")
         trip = computer.getTrip()
         print(trip)
-
+        total = computer.getTotal()
+        print(total)
+        
         print("sending to influxdb...")
         influx.write_points([{
             "measurement":"trip",
             "fields":trip
+        }, {
+            "measurement":"total",
+            "fields":total
         }])
 
         print("all OK. please remove computer")
